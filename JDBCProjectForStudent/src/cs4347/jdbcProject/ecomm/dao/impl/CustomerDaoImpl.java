@@ -61,7 +61,7 @@ public class CustomerDaoImpl implements CustomerDAO
 	@Override
 	public Customer retrieve(Connection connection, Long id) throws SQLException, DAOException {
 		String selectQuery = "SELECT id, first_name, last_name, gender, dob, email "
-		        + "FROM customer where CUSTOMER_id = ?";
+		        + "FROM customer where id = ?";
 		
 		if (id == null) {
 			throw new DAOException("Trying to retrieve Customer with NULL ID");
@@ -95,8 +95,8 @@ public class CustomerDaoImpl implements CustomerDAO
 
 	@Override
 	public int update(Connection connection, Customer customer) throws SQLException, DAOException {
-		String updateSQL = "UPDATE customer SET firstName = ?, lastName = ?, gender = ?, dob = ?, email = ? "
-		        + "WHERE CUSTOMER_id = ?;";
+		String updateSQL = "UPDATE customer SET first_name = ?, last_name = ?, gender = ?, dob = ?, email = ? "
+		        + "WHERE id = ?;";
 
 		if (customer.getId() == null) {
 			throw new DAOException("Trying to update Customer with NULL ID");
@@ -110,6 +110,7 @@ public class CustomerDaoImpl implements CustomerDAO
 			ps.setString(3, String.valueOf(customer.getGender()));
 			ps.setDate(4, customer.getDob());
 			ps.setString(5, customer.getEmail());
+			ps.setLong(6, customer.getId());
 
 			int rows = ps.executeUpdate();
 			return rows;
@@ -149,10 +150,10 @@ public class CustomerDaoImpl implements CustomerDAO
 	@Override
 	public List<Customer> retrieveByZipCode(Connection connection, String zipCode) throws SQLException, DAOException {
 		String selectQuery = "SELECT id, first_name, last_name, gender, dob, email "
-		        + "FROM customer as c JOIN address as a on c.id = a.CUSTOMER_id"
+		        + "FROM customer as c JOIN address as a on c.id = a.CUSTOMER_id "
 				+ "where a.zipCode = ?";
 		
-		ArrayList<Customer> custs = new ArrayList<>();
+		List<Customer> custs = new ArrayList<>();
 		
 		if (zipCode == null) {
 			throw new DAOException("Trying to retrieve Customer with NULL zipCode");
@@ -163,8 +164,9 @@ public class CustomerDaoImpl implements CustomerDAO
 			ps = connection.prepareStatement(selectQuery);
 			ps.setString(1, zipCode);
 			ResultSet rs = ps.executeQuery();
+			
 			if (!rs.next()) {
-				return null;
+				return custs;
 			}
 			
 			do {
@@ -178,6 +180,8 @@ public class CustomerDaoImpl implements CustomerDAO
 				
 				custs.add(cust);
 			} while(rs.next());
+			
+			
 
 			return custs;
 		}
@@ -192,7 +196,7 @@ public class CustomerDaoImpl implements CustomerDAO
 	public List<Customer> retrieveByDOB(Connection connection, Date startDate, Date endDate)
 			throws SQLException, DAOException {
 		String selectQuery = "SELECT id, first_name, last_name, gender, dob, email "
-		        + "FROM customer where date BETWEEN ? and ?";
+		        + "FROM customer where dob BETWEEN ? and ?";
 		
 		ArrayList<Customer> custs = new ArrayList<>();
 		

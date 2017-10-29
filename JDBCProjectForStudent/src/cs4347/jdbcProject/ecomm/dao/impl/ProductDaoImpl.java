@@ -107,6 +107,7 @@ public class ProductDaoImpl implements ProductDAO
 			ps.setString(2, product.getProdDescription());
 			ps.setInt(3, product.getProdCategory());
 			ps.setString(4, product.getProdUPC());
+			ps.setLong(5, product.getId());
 
 			int rows = ps.executeUpdate();
 			return rows;
