@@ -7,6 +7,15 @@ public class Address
 	private String city;
 	private String state;
 	private String zipcode;
+	private Long custId;
+	
+	public Long getCustId() {
+		return custId;
+	}
+	
+	public void setCustId(Long custId) {
+		this.custId = custId;
+	}
 
 	public String getAddress1()
 	{

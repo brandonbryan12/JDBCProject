@@ -6,6 +6,15 @@ public class CreditCard
 	private String ccNumber;
 	private String expDate;
 	private String securityCode;
+	private Long custId;
+	
+	public Long getCustId() {
+		return custId;
+	}
+	
+	public void setCustId(Long custId) {
+		this.custId = custId;
+	}
 
 	public String getName()
 	{
