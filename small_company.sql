@@ -18,7 +18,7 @@ USE `simple_company` ;
 -- Table `simple_company`.`Product`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `simple_company`.`Product` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `prod_name` VARCHAR(45) NULL,
   `prod_description` VARCHAR(1024) NULL,
   `prod_category` INT NULL,
@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 -- Table `simple_company`.`Customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `simple_company`.`Customer` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `gender` CHAR(1) NULL,
@@ -45,7 +45,7 @@ ENGINE = InnoDB;
 -- Table `simple_company`.`Purchase`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `purchase_date` TIMESTAMP NULL,
   `purchase_amt` DECIMAL(9,2) NULL,
   `PRODUCT_id` INT NULL,
