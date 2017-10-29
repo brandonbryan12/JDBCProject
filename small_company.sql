@@ -52,13 +52,13 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
   `CUSTOMER_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `PRODUCT_id_idx` (`PRODUCT_id` ASC),
-  INDEX `CUSTOMER_ID_idx` (`CUSTOMER_id` ASC),
+  INDEX `CUSTOMER_ID_idx2` (`CUSTOMER_id` ASC),
   CONSTRAINT `fk_PRODUCT_id`
     FOREIGN KEY (`PRODUCT_id`)
     REFERENCES `simple_company`.`Product` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_CUSTOMER_ID`
+  CONSTRAINT `fk3_CUSTOMER_id`
     FOREIGN KEY (`CUSTOMER_id`)
     REFERENCES `simple_company`.`Customer` (`id`)
     ON DELETE NO ACTION
@@ -75,11 +75,11 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`CreditCard` (
   `exp_date` VARCHAR(45) NULL,
   `security_code` VARCHAR(45) NULL,
   `CUSTOMER_id` INT NULL,
-  INDEX `1CUSTOMER_id_idx` (`CUSTOMER_id` ASC),
-  CONSTRAINT `4fk_CUSTOMER_id`
+  INDEX `CUSTOMER_id_idx` (`CUSTOMER_id` ASC),
+  CONSTRAINT `fk_CUSTOMER_id`
     FOREIGN KEY (`CUSTOMER_id`)
     REFERENCES `simple_company`.`Customer` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -94,11 +94,11 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
   `state` VARCHAR(45) NULL,
   `zipcode` VARCHAR(45) NULL,
   `CUSTOMER_id` INT NULL,
-  INDEX `fk_CUSTOMER_id_idx` (`CUSTOMER_id` ASC),
+  INDEX `fk2_CUSTOMER_id_idx` (`CUSTOMER_id` ASC),
   CONSTRAINT `fk2_CUSTOMER_id`
     FOREIGN KEY (`CUSTOMER_id`)
     REFERENCES `simple_company`.`Customer` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
