@@ -75,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`CreditCard` (
   `exp_date` VARCHAR(45) NULL,
   `security_code` VARCHAR(45) NULL,
   `CUSTOMER_id` INT NULL,
-  INDEX `CUSTOMER_id_idx` (`CUSTOMER_id` ASC),
-  CONSTRAINT `fk_CUSTOMER_id`
+  INDEX `1CUSTOMER_id_idx` (`CUSTOMER_id` ASC),
+  CONSTRAINT `4fk_CUSTOMER_id`
     FOREIGN KEY (`CUSTOMER_id`)
     REFERENCES `simple_company`.`Customer` (`id`)
     ON DELETE NO ACTION
