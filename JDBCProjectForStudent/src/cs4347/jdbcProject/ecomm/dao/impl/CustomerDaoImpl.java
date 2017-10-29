@@ -61,7 +61,7 @@ public class CustomerDaoImpl implements CustomerDAO
 	@Override
 	public Customer retrieve(Connection connection, Long id) throws SQLException, DAOException {
 		String selectQuery = "SELECT id, first_name, last_name, gender, dob, email "
-		        + "FROM customer where customer_id = ?";
+		        + "FROM customer where CUSTOMER_id = ?";
 		
 		if (id == null) {
 			throw new DAOException("Trying to retrieve Customer with NULL ID");
@@ -96,7 +96,7 @@ public class CustomerDaoImpl implements CustomerDAO
 	@Override
 	public int update(Connection connection, Customer customer) throws SQLException, DAOException {
 		String updateSQL = "UPDATE customer SET firstName = ?, lastName = ?, gender = ?, dob = ?, email = ? "
-		        + "WHERE customer_id = ?;";
+		        + "WHERE CUSTOMER_id = ?;";
 
 		if (customer.getId() == null) {
 			throw new DAOException("Trying to update Customer with NULL ID");
@@ -124,7 +124,7 @@ public class CustomerDaoImpl implements CustomerDAO
 
 	@Override
 	public int delete(Connection connection, Long id) throws SQLException, DAOException {
-		String deleteSQL = "DELETE FROM CUSTOMER WHERE ID = ?;";
+		String deleteSQL = "DELETE FROM CUSTOMER WHERE id = ?;";
 		
 		if (id == null) {
 			throw new DAOException("Trying to delete Customer with NULL ID");
