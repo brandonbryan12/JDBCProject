@@ -16,4 +16,7 @@ public interface CreditCardDAO
 	CreditCard retrieveForCustomerID(Connection connection, Long customerID) throws SQLException, DAOException;
 	
 	void deleteForCustomerID(Connection connection, Long customerID) throws SQLException, DAOException;
+
+	int updateForCustomerID(Connection connection, CreditCard creditcard) throws SQLException, DAOException;
+
 }

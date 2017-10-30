@@ -124,8 +124,8 @@ public class CustomerPersistenceServiceImpl implements CustomerPersistenceServic
 			int rows = 0;
 			
 			rows += customerDAO.update(connection, customer);
-			rows += addressDAO.update(connection, customer.getAddress());
-			rows += creditCardDAO.update(connection, customer.getCreditCard());
+			addressDAO.updateforCustomerID(connection, customer.getAddress());
+			creditCardDAO.updateForCustomerID(connection, customer.getCreditCard());
 
 			connection.commit();
 			

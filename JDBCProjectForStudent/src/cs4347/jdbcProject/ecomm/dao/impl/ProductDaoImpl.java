@@ -47,7 +47,7 @@ public class ProductDaoImpl implements ProductDAO
 			keyRS.next();
 			int lastKey = keyRS.getInt(1);
 			product.setId((long) lastKey);
-
+			
 			return product;
 		}
 		finally {
@@ -59,7 +59,7 @@ public class ProductDaoImpl implements ProductDAO
 
 	@Override
 	public Product retrieve(Connection connection, Long id) throws SQLException, DAOException {
-		String selectQuery = "SELECT id, prod_name, prod_description, prod_category, prod_upc "
+		String selectQuery = "SELECT prod_name, prod_description, prod_category, prod_upc "
 		        + "FROM product where id = ?";
 		
 		if (id == null) {
@@ -71,12 +71,13 @@ public class ProductDaoImpl implements ProductDAO
 			ps = connection.prepareStatement(selectQuery);
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
+			
 			if (!rs.next()) {
 				return null;
 			}
 
 			Product product = new Product();
-			product.setId(rs.getLong("id"));
+			product.setId(id);
 			product.setProdName(rs.getString("prod_name"));
 			product.setProdDescription((rs.getString("prod_description")));
 			product.setProdCategory(rs.getInt("prod_category"));

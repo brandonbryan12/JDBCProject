@@ -16,4 +16,6 @@ public interface AddressDAO
 	Address retrieveForCustomerID(Connection connection, Long customerID) throws SQLException, DAOException;
 	
 	void deleteForCustomerID(Connection connection, Long customerID) throws SQLException, DAOException;
+
+	int updateforCustomerID(Connection connection, Address address) throws SQLException, DAOException;
 }

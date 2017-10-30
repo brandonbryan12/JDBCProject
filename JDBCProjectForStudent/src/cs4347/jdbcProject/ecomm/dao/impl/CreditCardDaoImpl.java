@@ -32,6 +32,8 @@ public class CreditCardDaoImpl implements CreditCardDAO
 			ps.setLong(5, customerID );
 			ps.executeUpdate();
 			
+			creditCard.setCustId(customerID);
+			
 			return creditCard;
 		}
 		finally{
@@ -89,7 +91,7 @@ public class CreditCardDaoImpl implements CreditCardDAO
 	@Override
 	public int updateForCustomerID(Connection connection, CreditCard creditcard) throws SQLException, DAOException {
 		if (creditcard.getCustId() == null) {
-			throw new DAOException("Trying to update Address with NULL ID");
+			throw new DAOException("Trying to update Credit Card with NULL ID");
 		}
 		PreparedStatement ps = null;
 		try {
@@ -98,8 +100,9 @@ public class CreditCardDaoImpl implements CreditCardDAO
 			ps.setString(2, creditcard.getCcNumber());
 			ps.setString(3, creditcard.getExpDate());
 			ps.setString(4, creditcard.getSecurityCode());
+			ps.setLong(5, creditcard.getCustId());
 			
-			int rows =ps.executeUpdate();
+			int rows = ps.executeUpdate();
 			return rows;
 		}
 		finally {
