@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
   CONSTRAINT `fk_PRODUCT_id`
     FOREIGN KEY (`PRODUCT_id`)
     REFERENCES `simple_company`.`Product` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk3_CUSTOMER_id`
     FOREIGN KEY (`CUSTOMER_id`)
