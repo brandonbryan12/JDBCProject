@@ -87,7 +87,7 @@ public class CreditCardDaoImpl implements CreditCardDAO
 	}
 	final static String updateSQL = "UPDATE creditcard SET name = ?, cc_number = ?, exp_date = ?, security_code = ? WHERE CUSTOMER_id = ?;" ;
 	@Override
-	public int dupdateForCustomerID(Connection connection, CreditCard creditcard) throws SQLException, DAOException {
+	public int updateForCustomerID(Connection connection, CreditCard creditcard) throws SQLException, DAOException {
 		if (creditcard.getCustId() == null) {
 			throw new DAOException("Trying to update Address with NULL ID");
 		}
